@@ -1,0 +1,30 @@
+{
+  "name": "ChatGPT File Uploader",
+  "version": "1.0",
+  "manifest_version": 3,
+  "description": "A Chrome extension that allows you to upload large files in chunks.",
+  "permissions": ["*://chat.openai.com/*"],
+  "host_permissions": ["*://cdnjs.cloudflare.com/*"],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {},
+  "content_scripts": [
+    {
+      "matches": ["https://chat.openai.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [],
+      "matches": ["https://chat.openai.com/*"]
+    }
+  ],
+  "content_security_policy": "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:* https://cdnjs.cloudflare.com/; object-src 'self'"
+}
